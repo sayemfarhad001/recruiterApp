@@ -2,6 +2,7 @@ package com.recruiter.recruiter.company;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.recruiter.recruiter.job.Job;
 
 import jakarta.persistence.Entity;
@@ -18,7 +19,8 @@ public class Company {
     private String name;
     private String description;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
     // private List<Review> reviews;
