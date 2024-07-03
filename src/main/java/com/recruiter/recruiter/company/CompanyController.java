@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -57,4 +59,14 @@ public class CompanyController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getCompany(@PathVariable Long id) {
+        Company company = companyService.getCompanyById(id);
+        if (company != null){
+            return new ResponseEntity<>(company, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 }
