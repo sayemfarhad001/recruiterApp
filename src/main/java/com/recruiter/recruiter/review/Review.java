@@ -15,7 +15,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String desctiption;
+    private String description;
     private double rating;
 
     @JsonIgnore
@@ -36,11 +36,11 @@ public class Review {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getDesctiption() {
-        return desctiption;
+    public String getDescription() {
+        return description;
     }
-    public void setDesctiption(String desctiption) {
-        this.desctiption = desctiption;
+    public void setDescription(String description) {
+        this.description = description;
     }
     public double getRating() {
         return rating;
@@ -54,5 +54,6 @@ public class Review {
     public void setCompany(Company company) {
         this.company = company;
     }
+
     
 }
