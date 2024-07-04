@@ -1,6 +1,7 @@
 package com.recruiter.recruiter.review.impl;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,15 @@ public class ReviewServiceImpl implements ReviewService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Review getReview(Long companyId, Long reviewId) {
+        List<Review> reviews = reviewRepository.findByCompanyId(companyId);
+        return reviews.stream() 
+            .filter(review -> review.getId().equals(reviewId))
+            .findFirst()
+            .orElse(null);
     }
 
 }
