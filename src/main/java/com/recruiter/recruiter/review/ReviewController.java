@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -45,5 +47,14 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.getReview(companyId, reviewId), HttpStatus.OK);
     }
     
+    @PutMapping("/reviews/{reviewId}")
+    public ResponseEntity<String> updateReview(@PathVariable Long companyId, @PathVariable Long reviewId, @RequestBody Review review) {
+        boolean isReviewUpdated = reviewService.updateReview(companyId, reviewId, review);
+
+        if (isReviewUpdated){
+            return new ResponseEntity<>("Review updated successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Review not updated", HttpStatus.NOT_FOUND);    
+    }
 
 }
